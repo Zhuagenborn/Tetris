@@ -14,3 +14,10 @@ add_subdirectory(grid)
 add_subdirectory(game)
 add_subdirectory(controller)
 add_subdirectory(args)
+
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    PRIVATE
+        game
+        controller
+        args
+)

@@ -1,0 +1,56 @@
+name: Build and Test
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download package information
+        run: sudo apt-get update
+      - name: Install CMake
+        run: sudo apt-get install -y cmake
+      - name: Install GoogleTest
+        run: |
+          sudo apt-get install -y libgtest-dev
+          sudo apt-get install -y libgmock-dev
+      - name: Install ncurses
+        run: |
+          sudo apt-get install -y libncurses5-dev
+          sudo apt-get install -y libncursesw5-dev
+      - name: Check out the repository
+        uses: actions/checkout@main
+      - name: Create a building folder
+        run: mkdir build
+      - name: Generate project files
+        working-directory: ${{github.workspace}}/build
+        run: cmake ..
+      - name: Build the project
+        working-directory: ${{github.workspace}}/build
+        run: cmake --build .
+      - name: Tar building files
+        run: tar -cvf build.tar --directory=${{github.workspace}} build
+      - name: Upload building files
+        uses: actions/upload-artifact@main
+        with:
+          name: build
+          path: build.tar
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install CMake
+        run: sudo apt-get install -y cmake
+      - name: Check out the repository
+        uses: actions/checkout@main
+      - name: Download building files
+        uses: actions/download-artifact@main
+        with:
+          name: build
+      - name: Tar building files
+        run: tar -xvf build.tar
+      - name: Run tests
+        working-directory: ${{github.workspace}}/build
+        run: ctest -VV

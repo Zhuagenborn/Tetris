@@ -7,3 +7,4 @@ target_sources(${CMAKE_PROJECT_NAME}
 
 add_subdirectory(location)
 add_subdirectory(color)
+add_subdirectory(shape)

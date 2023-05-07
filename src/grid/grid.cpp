@@ -19,6 +19,60 @@ void Cell::SetColor(const Color color) noexcept {
     color_ = color;
 }
 
+Angle Grid::MovableTetromino::GetAngle() const noexcept {
+    return tetromino_->GetAngle();
+}
+
+void Grid::MovableTetromino::RotateLeft() noexcept {
+    tetromino_->RotateLeft();
+}
+
+void Grid::MovableTetromino::RotateRight() noexcept {
+    tetromino_->RotateRight();
+}
+
+void Grid::MovableTetromino::RotateTo(const Angle angle) noexcept {
+    tetromino_->RotateTo(angle);
+}
+
+void Grid::MovableTetromino::SetPosition(Point pos) noexcept {
+    pos_ = std::move(pos);
+}
+
+Point Grid::MovableTetromino::GetPosition() const noexcept {
+    return pos_;
+}
+
+Grid::MovableTetromino::MovableTetromino(std::unique_ptr<Tetromino> tetromino,
+                                         Point pos) noexcept :
+    tetromino_ {std::move(tetromino)}, pos_ {std::move(pos)} {}
+
+std::size_t Grid::MovableTetromino::GetHeight() const noexcept {
+    return tetromino_->GetHeight();
+}
+
+std::size_t Grid::MovableTetromino::GetWidth() const noexcept {
+    return tetromino_->GetWidth();
+}
+
+bool Grid::MovableTetromino::Filled(const Point& pos) const noexcept {
+    return tetromino_->Filled(pos);
+}
+
+Color Grid::MovableTetromino::GetColor() const noexcept {
+    return tetromino_->GetColor();
+}
+
+void Grid::MovableTetromino::SetColor(const Color color) noexcept {
+    return tetromino_->SetColor(color);
+}
+
+std::unique_ptr<Grid::MovableTetromino>
+Grid::MovableTetromino::GetTetrominoByAngle(const Angle angle) const noexcept {
+    return std::make_unique<MovableTetromino>(
+        tetromino_->GetTetrominoByAngle(angle), pos_);
+}
+
 Grid::Grid(const std::size_t width, const std::size_t height) noexcept :
     width_ {width}, height_ {height} {
     assert(width_ >= min_width_ && height_ >= min_height_);
@@ -67,7 +121,7 @@ void Grid::Reset() noexcept {
 bool Grid::PushTetromino(std::unique_ptr<Tetromino> tetromino,
                          const std::optional<Point> pos) noexcept {
     assert(!tetromino_);
-    tetromino_ = std::move(tetromino);
+    tetromino_ = std::make_unique<MovableTetromino>(std::move(tetromino));
     if (MoveTetrominoTo(pos.value_or(entrance_))) {
         return true;
     } else {

@@ -14,4 +14,5 @@ target_sources(grid
 target_link_libraries(grid
     PUBLIC
         tetromino
+        location
 )

@@ -47,23 +47,16 @@ std::ostream& operator<<(std::ostream&, Angle) noexcept;
 
 /**
  * @interface Rotatable
- * A rotatable object containing an angle.
  */
 class Rotatable {
 public:
-    Rotatable(Angle angle = Angle::Degree0) noexcept;
+    virtual Angle GetAngle() const noexcept = 0;
 
-    Angle GetAngle() const noexcept;
+    virtual void RotateLeft() noexcept = 0;
 
-    void RotateLeft() noexcept;
+    virtual void RotateRight() noexcept = 0;
 
-    void RotateRight() noexcept;
+    virtual void RotateTo(Angle) noexcept = 0;
 
-    void RotateTo(Angle) noexcept;
-
-protected:
-    ~Rotatable() noexcept = default;
-
-private:
-    Angle angle_;
+    virtual ~Rotatable() noexcept = default;
 };

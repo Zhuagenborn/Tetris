@@ -23,5 +23,4 @@ target_link_libraries(tetromino
         shape
         color
         rotation
-        location
 )

@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include "location.h"
 #include "tetromino.h"
 
 #include <iostream>
@@ -108,6 +109,46 @@ public:
     void Reset() noexcept;
 
 private:
+    class MovableTetromino :
+        public Shape,
+        public Rotatable,
+        public Colored,
+        public Movable {
+    public:
+        MovableTetromino(std::unique_ptr<Tetromino> tetromino,
+                         Point pos = {0, 0}) noexcept;
+
+        Angle GetAngle() const noexcept override;
+
+        void RotateLeft() noexcept override;
+
+        void RotateRight() noexcept override;
+
+        void RotateTo(Angle) noexcept override;
+
+        void SetPosition(Point) noexcept override;
+
+        Point GetPosition() const noexcept override;
+
+        std::size_t GetHeight() const noexcept override;
+
+        std::size_t GetWidth() const noexcept override;
+
+        bool Filled(const Point&) const noexcept override;
+
+        Color GetColor() const noexcept override;
+
+        void SetColor(Color) noexcept override;
+
+        std::unique_ptr<MovableTetromino> GetTetrominoByAngle(
+            Angle) const noexcept;
+
+    private:
+        Point pos_;
+
+        std::unique_ptr<Tetromino> tetromino_;
+    };
+
     static constexpr std::size_t min_width_ {4};
 
     static constexpr std::size_t min_height_ {4};
@@ -161,7 +202,7 @@ private:
 
     std::vector<std::vector<Cell>> cells_;
 
-    std::unique_ptr<Tetromino> tetromino_;
+    std::unique_ptr<MovableTetromino> tetromino_;
 };
 
 //! Print a grid, usually only for debugging.

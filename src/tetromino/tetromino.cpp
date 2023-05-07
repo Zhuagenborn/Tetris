@@ -15,7 +15,7 @@
 
 Tetromino::Tetromino(const Angle angle,
                      const std::optional<Color> color) noexcept :
-    Rotatable {angle} {
+    angle_ {angle} {
     if (color.value_or(Color::Non) == Color::Non) {
         SetColor(GetRandomColor());
     } else {
@@ -25,20 +25,28 @@ Tetromino::Tetromino(const Angle angle,
     assert(GetColor() != Color::Non);
 }
 
+Angle Tetromino::GetAngle() const noexcept {
+    return angle_;
+}
+
+void Tetromino::RotateLeft() noexcept {
+    angle_ = RotateAngleLeft(angle_);
+}
+
+void Tetromino::RotateRight() noexcept {
+    angle_ = RotateAngleRight(angle_);
+}
+
+void Tetromino::RotateTo(const Angle angle) noexcept {
+    angle_ = angle;
+}
+
 Color Tetromino::GetColor() const noexcept {
     return color_;
 }
 
 void Tetromino::SetColor(const Color color) noexcept {
     color_ = color;
-}
-
-Point Tetromino::GetPosition() const noexcept {
-    return pos_;
-}
-
-void Tetromino::SetPosition(Point pos) noexcept {
-    pos_ = std::move(pos);
 }
 
 std::size_t Tetromino::GetHeight() const noexcept {

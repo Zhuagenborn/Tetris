@@ -22,7 +22,6 @@
 #pragma once
 
 #include "color.h"
-#include "location.h"
 #include "rotation.h"
 #include "shape.h"
 
@@ -46,16 +45,20 @@ std::ostream& operator<<(std::ostream&, Type) noexcept;
 
 /**
  * @interface Tetromino
- * A tetromino that can be rotated, colored and located.
+ * A tetromino that can be rotated and colored.
  */
-class Tetromino :
-    public Shape,
-    public Movable,
-    public Rotatable,
-    public Colored {
+class Tetromino : public Shape, public Rotatable, public Colored {
 public:
     Tetromino(Angle angle = Angle::Degree0,
               std::optional<Color> color = std::nullopt) noexcept;
+
+    Angle GetAngle() const noexcept override;
+
+    void RotateLeft() noexcept override;
+
+    void RotateRight() noexcept override;
+
+    void RotateTo(Angle) noexcept override;
 
     std::size_t GetHeight() const noexcept override;
 
@@ -66,10 +69,6 @@ public:
     Color GetColor() const noexcept override;
 
     void SetColor(Color) noexcept override;
-
-    Point GetPosition() const noexcept override;
-
-    void SetPosition(Point) noexcept override;
 
     virtual tetromino::Type GetType() const noexcept = 0;
 
@@ -87,17 +86,17 @@ protected:
     //! Clone a tetromino and rotate it to an angle.
     template <typename T>
         requires std::is_base_of_v<Tetromino, T>
-    std::unique_ptr<Tetromino> CloneAndRotateTo(
-        T tetromino, const Angle angle) const noexcept {
+    static std::unique_ptr<Tetromino> CloneAndRotateTo(
+        T tetromino, const Angle angle) noexcept {
         auto rotated {std::make_unique<T>(std::move(tetromino))};
         rotated->RotateTo(angle);
         return rotated;
     }
 
 private:
-    Color color_ {Color::Non};
+    Angle angle_;
 
-    Point pos_;
+    Color color_ {Color::Non};
 };
 
 namespace tetromino {

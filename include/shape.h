@@ -21,9 +21,9 @@
  */
 template <typename T>
 concept Is2DArray = requires(T o) {
-                        { o[0][0] } -> std::convertible_to<bool>;
-                        { o.size() } -> std::convertible_to<std::size_t>;
-                    };
+    { o[0][0] } -> std::convertible_to<bool>;
+    { o.size() } -> std::convertible_to<std::size_t>;
+};
 
 /**
  * @interface Shape
@@ -61,13 +61,15 @@ protected:
 /**
  * Implement the @p Shape interface.
  */
-#define IMPLEMENT_SHAPE(width, height, cells)                                  \
-    constexpr std::size_t GetHeight() const noexcept override {                \
-        return height;                                                         \
-    }                                                                          \
-                                                                               \
-    constexpr std::size_t GetWidth() const noexcept override { return width; } \
-                                                                               \
-    bool Filled(const Point& pos) const noexcept override {                    \
-        return Shape::Filled<decltype(cells)>(cells, pos);                     \
+#define IMPLEMENT_SHAPE(width, height, cells)                   \
+    constexpr std::size_t GetHeight() const noexcept override { \
+        return height;                                          \
+    }                                                           \
+                                                                \
+    constexpr std::size_t GetWidth() const noexcept override {  \
+        return width;                                           \
+    }                                                           \
+                                                                \
+    bool Filled(const Point& pos) const noexcept override {     \
+        return Shape::Filled(cells, pos);                       \
     }

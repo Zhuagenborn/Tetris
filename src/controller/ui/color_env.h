@@ -2,7 +2,7 @@
  * @file color_env.h
  * @brief The color mode.
  *
- * @author Zhenshuo Chen (chenzs108@outlook.com)
+ * @author Chen Zhenshuo (chenzs108@outlook.com)
  * @par GitHub
  * https://github.com/Zhuagenborn
  * @version 1.0

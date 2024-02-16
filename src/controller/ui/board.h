@@ -2,7 +2,7 @@
  * @file board.h
  * @brief Graphical board interfaces.
  *
- * @author Zhenshuo Chen (chenzs108@outlook.com)
+ * @author Chen Zhenshuo (chenzs108@outlook.com)
  * @par GitHub
  * https://github.com/Zhuagenborn
  * @version 1.0
@@ -71,6 +71,6 @@ struct CellSymbols {
     std::size_t width;
 };
 
-constexpr CellSymbols cell_sym {' ', 'O', 2};
+inline constexpr CellSymbols cell_sym {' ', 'O', 2};
 
 }  // namespace ui

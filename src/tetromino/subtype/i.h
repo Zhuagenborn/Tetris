@@ -2,7 +2,7 @@
  * @file i.h
  * @brief The underlying shape of the tetromino @p I.
  *
- * @author Zhenshuo Chen (chenzs108@outlook.com)
+ * @author Chen Zhenshuo (chenzs108@outlook.com)
  * @author Liu Guowen (liu.guowen@outlook.com)
  * @par GitHub
  * https://github.com/Zhuagenborn

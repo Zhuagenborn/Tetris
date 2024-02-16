@@ -2,7 +2,7 @@
  * @file grid_board.h
  * @brief A board showing a playing field.
  *
- * @author Zhenshuo Chen (chenzs108@outlook.com)
+ * @author Chen Zhenshuo (chenzs108@outlook.com)
  * @par GitHub
  * https://github.com/Zhuagenborn
  * @version 1.0

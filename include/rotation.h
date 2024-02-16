@@ -2,7 +2,7 @@
  * @file rotation.h
  * @brief Rotation operations.
  *
- * @author Zhenshuo Chen (chenzs108@outlook.com)
+ * @author Chen Zhenshuo (chenzs108@outlook.com)
  * @author Liu Guowen (liu.guowen@outlook.com)
  * @par GitHub
  * https://github.com/Zhuagenborn
@@ -19,7 +19,7 @@
 
 enum class Angle { Degree0, Degree90, Degree180, Degree270 };
 
-constexpr std::size_t angle_count {4};
+inline constexpr std::size_t angle_count {4};
 
 //! Rotate an angle to the left by 90 degrees.
 constexpr Angle RotateAngleLeft(const Angle angle) noexcept {

@@ -15,19 +15,13 @@
 
 #include <concepts>
 
-/**
- * @concept Is2DArray
- * A 2D array type with values that can be converted to @p bool.
- */
+//! A 2D array type with values that can be converted to @p bool.
 template <typename T>
 concept Is2DArray = requires(T o) {
     { o[0][0] } -> std::convertible_to<bool>;
     { o.size() } -> std::convertible_to<std::size_t>;
 };
 
-/**
- * @interface Shape
- */
 class Shape {
 public:
     virtual std::size_t GetHeight() const noexcept = 0;
@@ -58,9 +52,7 @@ protected:
     }
 };
 
-/**
- * Implement the @p Shape interface.
- */
+//! Implement the @p Shape interface.
 #define IMPLEMENT_SHAPE(width, height, cells)                   \
     constexpr std::size_t GetHeight() const noexcept override { \
         return height;                                          \

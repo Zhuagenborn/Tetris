@@ -45,9 +45,6 @@ std::string to_string(Angle) noexcept;
 
 std::ostream& operator<<(std::ostream&, Angle) noexcept;
 
-/**
- * @interface Rotatable
- */
 class Rotatable {
 public:
     virtual Angle GetAngle() const noexcept = 0;

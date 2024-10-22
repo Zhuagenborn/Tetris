@@ -22,6 +22,9 @@ namespace shape {
 namespace z {
 
 /**
+ * @brief The horizontal tetromino @p Z.
+ *
+ * @details
  * The shape is:
  *
  * ```
@@ -43,6 +46,9 @@ private:
 };
 
 /**
+ * @brief The vertical tetromino @p Z.
+ *
+ * @details
  * The shape is:
  *
  * ```

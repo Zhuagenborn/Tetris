@@ -16,6 +16,8 @@
 #include <string>
 
 /**
+ * @brief Colors.
+ *
  * @warning
  * The developer must place @p Non first and @p White last.
  * They are used to count the number of colors.
@@ -28,9 +30,6 @@ std::ostream& operator<<(std::ostream&, Color) noexcept;
 
 Color GetRandomColor() noexcept;
 
-/**
- * @interface Colored
- */
 class Colored {
 public:
     virtual Color GetColor() const noexcept = 0;

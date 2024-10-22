@@ -21,9 +21,7 @@
 #include <vector>
 
 
-/**
- * The cell used for building a playing field.
- */
+//! The cell used for building a playing field.
 class Cell : public Colored {
 public:
     bool Filled() const noexcept;
@@ -42,9 +40,7 @@ private:
     Color color_ {Color::Non};
 };
 
-/**
- * A playing field.
- */
+//! A playing field.
 class Grid : public Shape {
 public:
     Grid(std::size_t width, std::size_t height) noexcept;
@@ -154,6 +150,7 @@ private:
     static constexpr std::size_t min_height_ {4};
 
     /**
+     * @brief
      * Whether a position is filled by fixed tetrominoes.
      * Unlike @p Filled, this method ignores the current tetromino.
      */

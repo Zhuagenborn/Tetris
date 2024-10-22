@@ -22,6 +22,9 @@ namespace shape {
 namespace j {
 
 /**
+ * @brief The tetromino @p J.
+ *
+ * @details
  * The shape is:
  *
  * ```
@@ -44,6 +47,9 @@ private:
 };
 
 /**
+ * @brief The tetromino @p J.
+ *
+ * @details
  * The shape is:
  *
  * ```
@@ -65,6 +71,9 @@ private:
 };
 
 /**
+ * @brief The tetromino @p J.
+ *
+ * @details
  * The shape is:
  *
  * ```
@@ -87,6 +96,9 @@ private:
 };
 
 /**
+ * @brief The tetromino @p J.
+ *
+ * @details
  * The shape is:
  *
  * ```

@@ -13,9 +13,7 @@
 
 #include <cstddef>
 
-/**
- * A coordinate.
- */
+//! A coordinate.
 struct Point {
     constexpr Point(const std::size_t x = 0, const std::size_t y = 0) noexcept :
         x {x}, y {y} {}
@@ -24,9 +22,6 @@ struct Point {
     std::size_t y;
 };
 
-/**
- * @interface Locatable
- */
 class Locatable {
 public:
     virtual Point GetPosition() const noexcept = 0;
@@ -34,9 +29,6 @@ public:
     virtual ~Locatable() noexcept = default;
 };
 
-/**
- * @interface Movable
- */
 class Movable : public Locatable {
 public:
     virtual void SetPosition(Point) noexcept = 0;

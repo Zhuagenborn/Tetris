@@ -20,9 +20,7 @@
 
 namespace ui {
 
-/**
- * A color environment.
- */
+//! A color environment.
 class ColorEnvironment {
 public:
     //! Try to enable a color environment.

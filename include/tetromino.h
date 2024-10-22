@@ -43,10 +43,7 @@ std::ostream& operator<<(std::ostream&, Type) noexcept;
 
 }  // namespace tetromino
 
-/**
- * @interface Tetromino
- * A tetromino that can be rotated and colored.
- */
+//! A tetromino that can be rotated and colored.
 class Tetromino : public Shape, public Rotatable, public Colored {
 public:
     Tetromino(Angle angle = Angle::Degree0,

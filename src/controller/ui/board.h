@@ -45,10 +45,7 @@ bool IsValidPosition(const Point& pos) noexcept {
            && pos.y <= std::numeric_limits<int>::max();
 }
 
-/**
- * @interface Board
- * The interface of a graphical board.
- */
+//! The interface of a graphical board.
 class Board : public Locatable {
 public:
     virtual std::size_t GetHeight() const noexcept = 0;
@@ -65,6 +62,7 @@ struct CellSymbols {
     chtype filled;
 
     /**
+     * @brief
      * The number of columns per cell on the terminal.
      * Usually, it should be set to 2 in order to make a cell look like a square.
      */

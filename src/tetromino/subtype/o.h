@@ -20,6 +20,9 @@
 namespace shape {
 
 /**
+ * @brief The tetromino @p O.
+ *
+ * @details
  * The shape is:
  *
  * ```

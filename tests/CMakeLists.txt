@@ -16,8 +16,8 @@ target_link_libraries(public-test
 
 target_link_libraries(public-test
     PRIVATE
-        ${GTEST_LIBS}
-        ${GMOCK_LIBS}
+        ${GTEST_LIB}
+        ${GMOCK_LIB}
 )
 
 gtest_discover_tests(public-test)

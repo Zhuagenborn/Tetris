@@ -26,7 +26,7 @@ Set the location to the project folder and run:
 ```bash
 mkdir build
 cd build
-cmake ..
+cmake -DTETRIS_BUILD_TESTS=ON ..
 cmake --build .
 ```
 

@@ -9,13 +9,15 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
-enable_testing()
-
-find_package(GTest REQUIRED)
-set(GTEST_LIBS GTest::gtest GTest::gtest_main)
-set(GMOCK_LIBS GTest::gmock GTest::gmock_main)
-
-set(CMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
+option(TETRIS_BUILD_TESTS "Build unit tests for the tetris" OFF)
+if(TETRIS_BUILD_TESTS)
+    find_package(GTest)
+    if(GTest_FOUND)
+        enable_testing()
+        set(GTEST_LIB GTest::gtest GTest::gtest_main)
+        set(CMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
+        add_subdirectory(tests)
+    endif()
+endif()
 
 add_subdirectory(src)
-add_subdirectory(tests)
